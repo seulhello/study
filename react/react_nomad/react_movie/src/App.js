@@ -3,7 +3,8 @@ import "./App.css";
 import "./Movie.css";
 import MovieShow from "./Movie";
 
-const API_KEY = "https://yts.am/api/v2/list_movies.json?sort_by=download_count";
+const API_KEY = `1a551d962f223bf61e6db7f8d0c4a749`;
+const API_URL = `https://api.themoviedb.org/3/movie/157336?api_key=${API_KEY}`;
 
 class App extends Component {
   // Render : componentWillMount() -> render() -> componentDidMount()
@@ -73,7 +74,7 @@ class App extends Component {
   };
 
   _callApi = () => {
-    return fetch(API_KEY) // fetch로 api 내용을 가져와라
+    return fetch(API_URL) // fetch로 api 내용을 가져와라
       .then(res => res.json()) // 위에 작업이 끝나면 then 안에 있는 내용을 진행해라
       .then(json => json.data.movies) // 위에 작업이 끝나면 then 안에 있는 내용을 진행해라
       .catch(err => console.log(err)); // fetch에서 api 내용을 가져오지 못하면 error를 내라
