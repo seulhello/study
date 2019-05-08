@@ -22,18 +22,35 @@
 // console.log(kim.sum());
 // console.log(lee.sum());
 
-function Person(){
-    this.name = 'lee';
-    this.first = 50;
-    this.second = 50;
+// function Person(){
+//     this.name = 'lee';
+//     this.first = 50;
+//     this.second = 50;
+//     this.sum = function(){
+//         return this.first + this.second
+//     }
+// }
+
+// console.log(Person());
+// console.log(new Person());
+
+// const day01 = new Date();
+// console.log(day01.getFullYear());
+
+
+
+// Date 같은 함수를 만들어 보자! 
+function Person(name,f_num,s_num){
+    this.name = name;
+    this.first = f_num;
+    this.second = s_num;
     this.sum = function(){
         return this.first + this.second
     }
 }
 
-console.log(Person());
-console.log(new Person());
+let kim = new Person('kim',10,20);
+let lee = new Person('lee',5,5);
 
-const Person = new Person();
-
-console.log(P);
+console.log(kim,kim.sum());
+console.log(lee,lee.sum());
