@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TOC from './components/TOC';
 import ReadContent from './components/Readcontent';
 import CreateContent from './components/Createcontent';
+import UpdateContent from './components/UpdateContent';
 import Control from './components/control';
 import Subject from './components/subject';
 import './App.css';
@@ -26,15 +27,7 @@ class App extends Component{
             ]
         }
     }
-    //bind란? 
-    // ex) test= {name: 'siri'} 
-    //function bindTest(){console.log(this.name)} 이런식으로 함수가 되어있을때 
-    //bindTest(); 라고 하게되면 결과 값이 undefinded가 된다. 내가 원하는건 test값이 bindTest와 연결되어 bindTest함수가 실행되게 하고싶다. 그렇게하려면
-    //bindTest.bind(test); 이런식으로 해서 console을 찍으면 siri라고 나오게 된다.
-    // 즉 bind란 내가 원하는 객체를 고정시켜주는 역할이라고 이해하면 될 것같다. (예제에서는 test)
-    //그냥 연결만 시켜주는게 아닌 연결이 된 새로운 함수를 만들어서 그내용을 보여주는것이다 
-    // const bindTest2 = bindTest.bind(obj); bindTest2();   결과 => siri
-    render(){
+    getContent(){
         let _title,_desc,_article = null;
         if(this.state.mode === 'Welcome'){
             _title = this.state.welcome.title;
@@ -71,12 +64,25 @@ class App extends Component{
                                 })
                             }}
                         />
+        }else if(this.state.mode === 'update'){
+            _article = <UpdateContent />
         }
         //여기서 찍은 this는 App의 this이다 이것을 onClick안에 있는 함수에 bind하면 
         //App의 this가 고정이 된다.
         // console.log(this);
         //state의 값을 변경할때는 직접변경이아닌 꼭!!!!!!!!! setState를 사용해야한다.
         //onchangepage라는 이벤트는 내가 만든것이다.
+        return _article;
+     }
+    //bind란? 
+    // ex) test= {name: 'siri'} 
+    //function bindTest(){console.log(this.name)} 이런식으로 함수가 되어있을때 
+    //bindTest(); 라고 하게되면 결과 값이 undefinded가 된다. 내가 원하는건 test값이 bindTest와 연결되어 bindTest함수가 실행되게 하고싶다. 그렇게하려면
+    //bindTest.bind(test); 이런식으로 해서 console을 찍으면 siri라고 나오게 된다.
+    // 즉 bind란 내가 원하는 객체를 고정시켜주는 역할이라고 이해하면 될 것같다. (예제에서는 test)
+    //그냥 연결만 시켜주는게 아닌 연결이 된 새로운 함수를 만들어서 그내용을 보여주는것이다 
+    // const bindTest2 = bindTest.bind(obj); bindTest2();   결과 => siri
+    render(){
         return(
             <div className="App">
                 <Subject 
@@ -113,7 +119,7 @@ class App extends Component{
                         });
                     }}
                 />
-                {_article}
+                {this.getContent()}
             </div>
         );
     }
